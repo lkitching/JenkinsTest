@@ -12,6 +12,16 @@ pipeline {
                 sh 'printenv'
             }
         }
+        stage('confirm') {
+          steps {
+            input 'Continue?'
+          }
+        }
+        stage('complete') {
+          steps {
+            sh 'echo "confirmed!"'
+          }
+        }
     }
     post {
       always {
