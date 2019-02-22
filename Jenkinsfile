@@ -1,10 +1,15 @@
 pipeline {
     agent { docker { image 'maven:3.3.3' } }
+    environment {
+      GREETING = 'Hello world!'
+      OTHER = 'Other env var'
+    }
     stages {
         stage('build') {
             steps {
                 sh 'mvn --version'
-                sh 'echo "Hello world!"'
+                sh "echo $GREETING"
+                sh 'printenv'
             }
         }
     }
